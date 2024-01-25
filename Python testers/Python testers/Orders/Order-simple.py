@@ -13,14 +13,9 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
 
         mycontract = Contract()
-        #mycontract.conId = 627889670
         #mycontract.exchange = "SMART"
-        mycontract.conId = 51069466
-        #mycontract.conId = 135423662
-        
-
-        #mycontract.symbol = "WATT"
-        #mycontract.secType = "STK"
+        mycontract.conId = 265598
+       
         mycontract.exchange = "SMART"
         #mycontract.currency = "USD"
 
@@ -34,15 +29,15 @@ class TestApp(EClient, EWrapper):
 
         myorder = Order()
         myorder.action = "BUY"
-        myorder.totalQuantity = 2
-        myorder.orderType = "LMT"
+        myorder.totalQuantity = 1
+        myorder.orderType = "MKT"
         myorder.tif = "DAY"
         #myorder.duration = ""
         #myorder.auxPrice= 160
         #myorder.goodTillDate = "20230713 15:15: FUCKKK"
-       # myorder.auxPrice = 250
-        myorder.lmtPrice = 575.6
-        # myorder.whatIf = True
+        #myorder.auxPrice = 250
+        #myorder.lmtPrice = 575.6
+        #myorder.whatIf = True
         #myorder.cashQty = 100000
         #myorder.notHeld = True
         myorder.transmit = True
