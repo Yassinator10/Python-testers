@@ -11,7 +11,7 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
 
         exec_filter = ExecutionFilter()
-
+        exec_filter.acctCode = "DUXXXXXX"
         self.reqExecutions(
             1234,
             exec_filter
