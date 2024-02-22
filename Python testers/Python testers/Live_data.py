@@ -16,9 +16,9 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
          
         mycontract = Contract()
-        mycontract.conId = 651687092
+        mycontract.conId = 265598
 
-        mycontract.exchange = "CME"
+        mycontract.exchange = "SMART"
 
         self.reqMktData(
             reqId=orderId,
@@ -51,24 +51,24 @@ class TestApp(EClient, EWrapper):
             f"attrib:{attrib}"
         )
 
-    #def tickSize(self, reqId: TickerId, tickType: TickType, size: Decimal):
-     #    print(f"tickSize. reqId:{reqId}, tickType:{TickTypeEnum.to_str(tickType)}, size:{size}")
+    def tickSize(self, reqId: TickerId, tickType: TickType, size: Decimal):
+         print(f"tickSize. reqId:{reqId}, tickType:{TickTypeEnum.to_str(tickType)}, size:{size}")
 
-    # def tickGeneric(self, reqId: TickerId, tickType: TickType, value: float):
-    #     print(f"tickGeneric:  reqId: {reqId}, tickType: {TickTypeEnum.to_str(tickType)}, value: {value}")
+    def tickGeneric(self, reqId: TickerId, tickType: TickType, value: float):
+         print(f"tickGeneric:  reqId: {reqId}, tickType: {TickTypeEnum.to_str(tickType)}, value: {value}")
 
-    # def tickString(self, reqId: TickerId, tickType: TickType, value: str):
-    #     print("tickString: ", reqId, TickTypeEnum.to_str(tickType), value)
+    def tickString(self, reqId: TickerId, tickType: TickType, value: str):
+        print("tickString: ", reqId, TickTypeEnum.to_str(tickType), value)
         
-    # def tickNews(self, tickerId: int, timeStamp: int, providerCode: str, articleId: str, headline: str, extraData: str):
-    #     print("tickNews",tickerId, timeStamp, providerCode, articleId, headline, extraData)
+    def tickNews(self, tickerId: int, timeStamp: int, providerCode: str, articleId: str, headline: str, extraData: str):
+        print("tickNews",tickerId, timeStamp, providerCode, articleId, headline, extraData)
 
     # def tickSnapshotEnd(self, reqId: int):
     #     print(f"tickSnapshotEnd. reqId:{reqId}")
     #     self.disconnect()
 
-    # def error(self, reqId: TickerId, errorCode: int, errorString: str, advancedOrderRejectJson=""):
-    #     return super().error(reqId, errorCode, errorString, advancedOrderRejectJson)
+    def error(self, reqId: TickerId, errorCode: int, errorString: str, advancedOrderRejectJson=""):
+        return super().error(reqId, errorCode, errorString, advancedOrderRejectJson)
 
     def marketDataType(self, reqId: TickerId, marketDataType: int):
         print(marketDataType)
