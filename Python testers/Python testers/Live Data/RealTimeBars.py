@@ -14,7 +14,7 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
 
         mycontract = Contract()
-        mycontract.conId = 320227571
+        mycontract.conId = 4815747
         #mycontract.symbol = "CMF"
         #mycontract.secType = "STK"
         mycontract.exchange = "SMART"
@@ -25,7 +25,7 @@ class TestApp(EClient, EWrapper):
             reqId=123,
             contract=mycontract,
             barSize=5,
-            whatToShow="TRADES",
+            whatToShow="BID",
             useRTH=False,
             realTimeBarsOptions=[],
         )
