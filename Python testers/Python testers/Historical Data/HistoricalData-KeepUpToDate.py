@@ -16,23 +16,23 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
         
         mycontract = Contract()
-        mycontract.conId = 495512572
-        # mycontract.symbol = "AAPL"
-        # mycontract.secType = "STK"
-        # mycontract.currency = "USD"
-        mycontract.exchange = "CME"
+        mycontract.localSymbol = "SPX   240517P05220000"
+        
+        mycontract.secType = "OPT"
+        
+        mycontract.exchange = "SMART"
         
         
         self.reqHistoricalData(
             reqId=123,
             contract=mycontract,
             endDateTime="",
-            durationStr= "300 S",
+            durationStr= "100 S",
             barSizeSetting = "1 secs",
-            whatToShow= "TRADES",
+            whatToShow= "BID_aSK",
             useRTH=0,
             formatDate=1,
-            keepUpToDate=True,
+            keepUpToDate=False,
             chartOptions=[],
         )
         
