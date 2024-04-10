@@ -15,13 +15,12 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
          
         mycontract = Contract()
-        #mycontract.conId = 213617372
+        mycontract.conId = 688340283
 
-        mycontract.symbol = "912796YH6"
-        mycontract.secType = "BILL"
+        
+        
         mycontract.exchange = "SMART"
-        mycontract.currency = "USD" 
-
+        
         #mycontract.multiplier = 20
         #mycontract.tradingClass = "NQ"
         #mycontract.lastTradeDateOrContractMonth = 202312
@@ -36,7 +35,7 @@ class TestApp(EClient, EWrapper):
         self.reqMktData(
             reqId=orderId,
             contract=mycontract,
-            genericTickList="225",
+            genericTickList="",
             snapshot=False,
             regulatorySnapshot=False,
             mktDataOptions=[],
