@@ -12,12 +12,11 @@ class TestApp(EClient, EWrapper):
         
         mycontract = Contract()
         
-        mycontract.conId = 265598  
-        #mycontract.symbol = "GC"
-        #mycontract.secType = "FUT"
-        #mycontract.exchange = "COMEX"
-        #mycontract.currency = "USD"  
-        #mycontract.lastTradeDateOrContractMonth = "20240426"
+        mycontract.symbol = "DJT"
+        mycontract.secType = "STK"
+        mycontract.exchange = "SMART"
+        mycontract.currency = "USD"  
+        mycontract.primaryExchange = "NASDAQ"
 
         self.reqContractDetails(reqId=orderId, contract=mycontract)
         
