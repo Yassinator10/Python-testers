@@ -17,34 +17,20 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
         
         mycontract = Contract()
-        mycontract.exchange = "KSE"
-        #mycontract.symbol = "SPX"
-        mycontract.conId = 655454315
-        #mycontract.currency = "USD"
-        #mycontract.secType = "IND"
-        #mycontract.symbol = "INDU"
-        #mycontract.secType = "IND"
-        #mycontract.currency = "USD"
-        
-        #mycontract.localSymbol="SPX   230721C04520000"
-        #mycontract.primaryExchange = "NASDAQ"
-        #mycontract.multiplier = 100
-        #mycontract.primaryExchange = "ARCA"
-        #mycontract.lastTradeDateOrContractMonth = "202310"
-        #mycontract.strike = 4370
-        #mycontract.right = "P"
-        #mycontract.tradingClass = "SPX"
-
-        
+        mycontract.exchange = "SMART"
+        mycontract.conId = 265598
+        #mycontract.includeExpired = True
+       
+      
         threading.Thread(target=self.reqHistoricalData(
             reqId=123,
             contract=mycontract,
             endDateTime="",
             #endDateTime="",
             #endDateTime=datetime.datetime.now().strftime("%Y%m%d %H:%M:%S"),
-            durationStr= "2 D",
-            barSizeSetting = "1 min",
-            whatToShow= "MIDPOINT",#"TRADES",
+            durationStr="11 D",
+            barSizeSetting = "1 day",
+            whatToShow= "TRADES",#"TRADES",
             useRTH=0,
             formatDate=1,
             keepUpToDate=True,
@@ -76,11 +62,12 @@ class TestApp(EClient, EWrapper):
 
     def historicalDataEnd(self, reqId: int, start: str, end: str):
         print(reqId, start, end)
-        self.disconnect()
+       
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str, advancedOrderRejectJson=""):
         print(reqId, errorCode, errorString, advancedOrderRejectJson)
 
+    
 
 
 app = TestApp()
