@@ -26,7 +26,7 @@ class TestApp(EClient, EWrapper):
             reqId=orderId,
             contract=mycontract,
             genericTickList="236",
-            snapshot=True,
+            snapshot=False,
             regulatorySnapshot=False,
             mktDataOptions=[],
         )
