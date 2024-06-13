@@ -15,10 +15,10 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
          
         mycontract = Contract()
-        #mycontract.conId =   
-        mycontract.conId = 680029107
         mycontract.exchange = "CBOE"
-
+        mycontract.symbol = "XSP"
+        mycontract.currency = "USD"
+        mycontract.secType = "IND"
        # contract1 = Contract()
         #contract1.symbol = "GOOGL"
         #contract1.secType = "STK"
