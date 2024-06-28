@@ -1,60 +1,60 @@
-# Library Imports
-import requests
-import time
-import urllib3
-import json
+from ibapi.client import *
+from ibapi.wrapper import *
 
-# Ignore insecure error messages
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+from datetime import datetime
 
-# Customer wants to receive a list of positions as soon as possible for the order fill
-
-def main():
-  
-    order_url = "https://localhost:5000/v1/api/iserver/account/orders"
-    postResponse = requests.get(url = order_url, verify=False)
-    response = json.dumps(postResponse.json(), indent=2)
-    print(response)
-
-    
-    order_url = "".join(["https://localhost:5000/v1/api/iserver/account/DU6962427/orders"])
-    source_code = {
-        "orders": [
-            {
-
-            "conid": 265598,
-
-            "cOID": "RAOUZ_TEST_2",
-
-            "listingExchange": "SMART",
-
-            "ticker": "AAPL",
-
-            "outsideRTH": True,
+port = 7496
 
 
+class TestApp(EClient, EWrapper):
+    def __init__(self):
+        EClient.__init__(self, self)
+
+    def nextValidId(self, orderId: OrderId):
+
+        mycontract = Contract()
+        mycontract.symbol ="AAPL"
+        mycontract.currency = "USD"
+        mycontract.exchange = "EDGX"
+        mycontract.secType = "STK"   
+        
+        myorder = Order()
+        myorder.action = "BUY" #"SELL"
+        myorder.totalQuantity = 1
+        myorder.orderType = "MKT"
+        #myorder.lmtPrice = 210
+        myorder.tif = "DAY"
+        #myorder.account= "DU2732314"
+        
+        #myorder.trailingPercent = 0.01
+        #myorder.trailStopPrice = 150
+        #myorder.duration = ""
+        #myorder.auxPrice= 160
+        #myorder.goodTillDate = "20230713 15:15:"
+        #myorder.auxPrice = 250
+        #myorder.whatIf = True
+        #myorder.cashQty = 100
+        #myorder.outsideRth = True
+        #Myorder.auxPrice = 17900
+        
+        #Order rejected reason this order doest comply to our derivative rules near expiration and policy!
+        
+        self.placeOrder(orderId, mycontract, myorder)
+
+    def openOrder(self, orderId: OrderId, contract: Contract, order: Order, orderState: OrderState):
+        print("openOrder.", orderId, contract, order, orderState)
+
+    def orderStatus(self, orderId: OrderId, status: str, filled: Decimal, remaining: Decimal, avgFillPrice: float, permId: int, parentId: int, lastFillPrice: float, clientId: int, whyHeld: str, mktCapPrice: float):
+        print("orderStatus", "datetime: ",datetime.now(), orderId, status, filled, remaining, avgFillPrice, permId, parentId, lastFillPrice, clientId, whyHeld, mktCapPrice)
 
 
-            "orderType": "LMT",
+    def execDetails(self, reqId: int, contract: Contract, execution: Execution):
+        print(f"reqId: {reqId}, contract: {contract}, execution: {execution}")
 
-            "price":192,
+    def error(self, reqId: TickerId, errorCode: int, errorString: str, advancedOrderRejectJson=""):
+        print("Error", reqId, errorCode, errorString, advancedOrderRejectJson)
 
-            "side": "SELL",
 
-            "tif": "DAY",
-
-            "quantity":3,
-
-            }
-        ]
-    }
-    postResponse = requests.post(url = order_url, verify=False, json=source_code, headers={"Content-Type":"application/json"})
-    response = json.dumps(postResponse.json(), indent=2)
-    print(response)
-
-    order_url = "https://localhost:5000/v1/api/iserver/account/orders"
-    postResponse = requests.get(url = order_url, verify=False)
-    response = json.dumps(postResponse.json(), indent=2)
-    print(response)
-if __name__ == "__main__":
-    main()
+app = TestApp()
+app.connect("127.0.0.1", port, 2)
+app.run()
