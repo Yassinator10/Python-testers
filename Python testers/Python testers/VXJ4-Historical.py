@@ -17,22 +17,26 @@ class TestApp(EClient, EWrapper):
     def nextValidId(self, orderId: OrderId):
         
         mycontract = Contract()
-        mycontract.exchange = "CFE"
-        mycontract.conId = 644107697
-       
+        mycontract.exchange = "CME"
+        #mycontract.conId = 265598
+        #mycontract.includeExpired = True
+        mycontract.secType ="CONTFUT"
+        mycontract.symbol ="NQ"
+        mycontract.currency = "USD"
 
+      
         threading.Thread(target=self.reqHistoricalData(
             reqId=123,
             contract=mycontract,
-            endDateTime="20240401 23:59:59 UTC",
+            endDateTime="",
             #endDateTime="",
             #endDateTime=datetime.datetime.now().strftime("%Y%m%d %H:%M:%S"),
-            durationStr= "20 D",
-            barSizeSetting = "30 mins",
+            durationStr="10 D",
+            barSizeSetting = "1 day",
             whatToShow= "TRADES",#"TRADES",
             useRTH=0,
             formatDate=1,
-            keepUpToDate=False,
+            keepUpToDate=True,
             chartOptions=[],
         )).start()
         '''
@@ -61,11 +65,12 @@ class TestApp(EClient, EWrapper):
 
     def historicalDataEnd(self, reqId: int, start: str, end: str):
         print(reqId, start, end)
-        self.disconnect()
+       
 
     def error(self, reqId: TickerId, errorCode: int, errorString: str, advancedOrderRejectJson=""):
         print(reqId, errorCode, errorString, advancedOrderRejectJson)
 
+    
 
 
 app = TestApp()
