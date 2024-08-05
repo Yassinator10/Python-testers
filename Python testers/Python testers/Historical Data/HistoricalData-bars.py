@@ -19,15 +19,15 @@ class TestApp(EClient, EWrapper):
         mycontract = Contract()
         #mycontract.conId = 602234859
 
-        mycontract.symbol = "GBL"
-        mycontract.secType = "FUT"
-        mycontract.currency = "EUR"
-        mycontract.exchange = "EUREX"
+        mycontract.exchange = "SMART"
+        mycontract.secType ="STK"
+        mycontract.symbol ="SMCI"
+        mycontract.currency = "USD"
         #mycontract.localSymbol="SPX   230721C04520000"
         #mycontract.primaryExchange = "PURE"
         #mycontract.multiplier = 100
         #mycontract.primaryExchange = "ARCA"
-        mycontract.lastTradeDateOrContractMonth = "202309"
+        #mycontract.lastTradeDateOrContractMonth = "202309"
         #mycontract.strike = 4520
         #mycontract.right = "C"
         #mycontract.tradingClass = "SPX"
